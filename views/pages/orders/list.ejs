@@ -1,0 +1,39 @@
+<%- include('../../partials/head');%> <%- include('../../partials/header');%>
+<main class="d-flex h-100">
+  <%- include('../../partials/sidebar');%>
+  <div class="p-5 w-100">
+    <h1 class="h3 mb-4">List Orders</h1>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Table Number</th>
+            <th>Items</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.forEach(function(order) { %>
+          <tr>
+            <td><a href="/order/update/<%= order._id %>"><%= order._id %></a></td>
+            <td><%= order.tableNumber %></td>
+            <td>
+              <ul>
+                <% order.items.forEach(function(item) { %>
+                <li><%= item.itemName %> x <%= item.quantity %></li>
+                <% }); %>
+              </ul>
+            </td>
+            <td>$<%= order.totalAmount.toFixed(2) %></td>
+            <td><%= order.status %></td>
+            <td><%= order?.createdAt?.toLocaleString() %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+  </div>
+</main>
+<%- include('../../partials/footer');%>

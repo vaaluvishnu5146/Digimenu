@@ -2,6 +2,7 @@
 // Api server - Will handle api calls
 
 const express = require("express");
+const path = require("path");
 
 const server = express();
 const PORT = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ connectDB();
 require("dotenv").config();
 
 // Middleware to serve static files from the 'public' directory
-// app.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static(path.join(__dirname, "public")));
 
 // Middleware to parse JSON bodies
 server.use(express.json());

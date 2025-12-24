@@ -83,7 +83,7 @@ exports.loginViaWeb = async (req, res) => {
     const token = generateToken(user);
     console.log("Generated token:", token);
     res.cookie("token", token, { httpOnly: true });
-    res.redirect("/menu");
+    res.redirect("/dashboard");
   } catch (error) {
     console.error("Login error:", error);
     res.redirect("/servererror");

@@ -1,15 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <%- include('../../partials/head', { title: "" }); %>
-  </head>
-  <body>
-    <%- include('../../partials/header');%>
-    <main>
-      <div class="p-5 mb-4">
-        <h1 class="h3 mb-4">List all Menu Item</h1>
+<%- include('../../partials/head');%> 
+<%- include('../../partials/header');%>
+    <main class="d-flex h-100">
+      <%- include('../../partials/sidebar');%>
+        <div class="p-5 w-100">
+          <h1 class="h3 mb-4">List all Menu Items</h1>
+          <!-- Category list will be rendered here -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Food Type</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% items.forEach(function(item) { %>
+              <tr>
+                <th scope="row">
+                  <a href="/menu/update/<%= item._id %>"><%= item.name %></a>
+                </th>
+                <td><%= item.price %></td>
+                <td><%= item.categoryId.name %></td>
+                <td><%= item.isVeg == true ? "Veg" : "Non-Veg" %></td>
+                <td><%= item.isAvailable == true ? "✅" : "❌" %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
     <%- include('../../partials/footer');%>
-  </body>
-</html>

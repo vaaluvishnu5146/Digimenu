@@ -1,0 +1,48 @@
+<%- include('../../partials/head');%> <%- include('../../partials/header');%>
+<main class="d-flex h-100">
+  <%- include('../../partials/sidebar');%>
+  <div class="p-5 w-100">
+    <h1 class="h3 mb-4">Update Order Item</h1>
+    <form action="/order/update/<%= order._id %>" method="POST">
+      <div class="mb-3">
+        <label for="tableNumber" class="form-label">Table No</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tableNumber"
+          name="tableNumber"
+          placeholder="1A, 2B etc"
+          readonly
+          value="<%= order.tableNumber %>"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="totalAmount" class="form-label">Order Value</label>
+        <input
+          type="number"
+          class="form-control"
+          id="totalAmount"
+          name="totalAmount"
+          placeholder="Enter Order Value"
+          readonly
+          value="<%= order.totalAmount %>"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select
+          class="form-control"
+          id="status"
+          name="status"
+        >
+          <option value="pending" <%= order.status === 'pending' ? 'selected' : '' %>>Pending</option>
+          <option value="preparing" <%= order.status === 'preparing' ? 'selected' : '' %>>Getting Prepared</option>
+          <option value="served" <%= order.status === 'served' ? 'selected' : '' %>>Served</option>
+          <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</main>
+<%- include('../../partials/footer');%>
