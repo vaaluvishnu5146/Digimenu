@@ -35,13 +35,23 @@
       </div>
       <div class="mb-3">
         <label for="categoryId" class="form-label">Category</label>
-        <input
+        <!-- <input
           type="text"
           class="form-control"
           id="categoryId"
           name="categoryId"
           placeholder="Enter Category"
-        />
+        /> -->
+        <select
+          class="form-select mt-2"
+          aria-label="Default select example"
+          name="categoryId"
+        >
+          <option value="" disabled selected>Select Category</option>
+          <% categories.forEach(function(category) { %>
+          <option value="<%= category._id %>"><%= category.name %></option>
+          <% }); %>
+        </select>
       </div>
       <div class="mb-3">
         <label for="preparationTime" class="form-label">Preparation Time</label>

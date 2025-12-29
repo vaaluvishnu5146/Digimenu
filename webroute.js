@@ -51,8 +51,17 @@ WebRouter.get("/menu", checkTokenValidity, async (req, res) => {
 });
 
 // Render the create menu page
-WebRouter.get("/menu/create", checkTokenValidity, (req, res) => {
-  res.render("pages/menu/create", { title: "Create Menu" });
+WebRouter.get("/menu/create", checkTokenValidity, async (req, res) => {
+  try {
+    const categories = await Category.find({});
+    res.render("pages/menu/create", {
+      title: "Create Menu",
+      categories: categories || [],
+    });
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    res.redirect("/servererror");
+  }
 });
 
 // Render the update menu page
