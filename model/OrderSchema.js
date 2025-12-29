@@ -28,7 +28,12 @@ const OrderSchema = new mongooose.Schema(
     },
     items: [
       {
-        itemName: {
+        id: {
+          type: mongooose.Schema.Types.ObjectId,
+          ref: "MenuItem",
+          required: true,
+        },
+        name: {
           type: String,
           required: true,
         },

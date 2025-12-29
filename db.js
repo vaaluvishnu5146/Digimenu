@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 module.exports = function connectDB() {
-  const dbURI = process.env.MONGO_URI || "mongodb://localhost:27017/digimenu";
+  const dbURI =
+    process.env.NODE_ENV != "development"
+      ? `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@managetasksdevdb.stsiv.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+      : "mongodb://localhost:27017/digimenu";
 
   mongoose.connect(dbURI);
 

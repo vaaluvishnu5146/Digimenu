@@ -4,15 +4,15 @@
 const express = require("express");
 const path = require("path");
 
+// Configure environment variables
+require("dotenv").config();
+
 const server = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to the database
 const connectDB = require("./db");
 connectDB();
-
-// Configure environment variables
-require("dotenv").config();
 
 // Middleware to serve static files from the 'public' directory
 server.use(express.static(path.join(__dirname, "public")));

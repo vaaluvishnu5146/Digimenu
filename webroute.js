@@ -13,6 +13,24 @@ const WebRouter = require("express").Router();
 /**
  * Web Page Routes
  */
+
+// Render restaurant menu listing page
+WebRouter.get("/restaurant/menu", async (req, res) => {
+  try {
+    const items = await MenuItem.find({ isAvailable: true }).populate(
+      "categoryId"
+    );
+    console.log("items", items);
+    res.render("pages/restaurant", {
+      title: "Restaurant Menu",
+      items,
+    });
+  } catch (error) {
+    console.error("Error fetching menu items:", error);
+    res.redirect("/servererror");
+  }
+});
+
 // Render the home page
 WebRouter.get("/dashboard", checkTokenValidity, (req, res) => {
   res.render("pages/index", { title: "Home Page" });

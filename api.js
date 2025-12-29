@@ -7,4 +7,6 @@ ApiRouter.get("/api/hello", (req, res) => {
 
 ApiRouter.use("/auth", require("./controller/AuthenticationController"));
 
+ApiRouter.use("/orders", require("./controller/OrderController"));
+
 module.exports = ApiRouter;
